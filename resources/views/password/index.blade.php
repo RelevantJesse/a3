@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
+@extends("layouts.master")
 
-  <title>XKCD Password Generator</title>
+@section("title")
+  XKCD Password Generator
+@endsection
 
-  <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
-  <link href='https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css' rel='stylesheet'>
-  <link href='css/main.css' rel='stylesheet'>
-  <script src="scripts/jquery-3.1.1.min.js"></script>
-  <script>
-  function ToggleSymbol() {
-    var c = document.getElementById('chkSymbol');
-    if (c.checked) {
-      $("#ddlSymbols").prop('disabled', false);
-    } else {
-      $("#ddlSymbols").prop('disabled', true);
-    }
-  }
-  </script>
-</head>
-<body class="col-md-12">
+@section("content")
   <div class="col-md-3"></div>
   <div class="col-md-6 innerdiv">
     <?php if(count($errors) > 0){ ?>
@@ -91,5 +76,17 @@
       <?php } ?>
     </div>
   <div class="col-md-3"></div>
-</body>
-</html>
+@endsection
+
+@push("body")
+  <script>
+  function ToggleSymbol() {
+    var c = document.getElementById('chkSymbol');
+    if (c.checked) {
+      $("#ddlSymbols").prop('disabled', false);
+    } else {
+      $("#ddlSymbols").prop('disabled', true);
+    }
+  }
+  </script>
+@endpush
