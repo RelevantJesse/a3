@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'PasswordController@index');
+Route::get('/', 'PasswordController');
