@@ -28,36 +28,36 @@
         <div class="col-md-6">
           <label for="ddlNumberOfWords">Number of words:</label>
           <select class="form-control" name="ddlNumberOfWords" id="ddlNumberOfWords">
-            <option <?php if($numberOfWords == "3") echo "selected"; ?>>3</option>
-            <option <?php if($numberOfWords == "4" || $numberOfWords == null) echo "selected"; ?>>4</option>
-            <option <?php if($numberOfWords == "5") echo "selected"; ?>>5</option>
-            <option <?php if($numberOfWords == "6") echo "selected"; ?>>6</option>
-            <option <?php if($numberOfWords == "7") echo "selected"; ?>>7</option>
-            <option <?php if($numberOfWords == "8") echo "selected"; ?>>8</option>
+            <option {{ $numberOfWords == "3" ? "selected" : "" }}>3</option>
+            <option {{ !$numberOfWords || $numberOfWords == "4" ? "selected" : "" }}>4</option>
+            <option {{ $numberOfWords == "5" ? "selected" : "" }}>5</option>
+            <option {{ $numberOfWords == "6" ? "selected" : "" }}>6</option>
+            <option {{ $numberOfWords == "7" ? "selected" : "" }}>7</option>
+            <option {{ $numberOfWords == "8" ? "selected" : "" }}>8</option>
           </select>
           <br>
           <label for="ddlNumberOfWords">Word to include(optional):</label>
           <input class="form-control" name="IncludedWord" id="txtIncludedWord" maxlength="10"
-            value="<?php if(old("IncludedWord")){ echo old("IncludedWord"); } else { echo $includedWord; } ?>" />
+            value="{{ old("IncludedWord") ? old("IncludedWord") : $includedWord }}" />
 
         </div>
         <div class="col-md-6">
           <label>Options:</label>
           <div class="checkbox">
-            <label><input type="checkbox" name="chkNumber" <?php if(isset($_GET["chkNumber"])) echo "checked"; ?>>Include a number</label>
+            <label><input type="checkbox" name="chkNumber" {{ $includeNumber ? "checked" : "" }}>Include a number</label>
           </div>
           <div class="checkbox">
-            <label><input type="checkbox" name="chkSymbol" id="chkSymbol" onclick="ToggleSymbol();" <?php if(isset($_GET["chkSymbol"])) echo "checked"; ?>>Include a symbol</label>
+            <label><input type="checkbox" name="chkSymbol" id="chkSymbol" onclick="ToggleSymbol();"  {{ $includeSymbol ? "checked" : "" }}>Include a symbol</label>
           </div>
-          <select class="form-control" name="ddlSymbols" id="ddlSymbols" <?php if(!isset($_GET["chkSymbol"])) echo "disabled"; ?>>
-            <option <?php if($chosenSymbol == "!") echo "selected"; ?>>!</option>
-            <option <?php if($chosenSymbol == "@") echo "selected"; ?>>@</option>
-            <option <?php if($chosenSymbol == "#") echo "selected"; ?>>#</option>
-            <option <?php if($chosenSymbol == "$") echo "selected"; ?>>$</option>
-            <option <?php if($chosenSymbol == "%") echo "selected"; ?>>%</option>
-            <option <?php if($chosenSymbol == "^") echo "selected"; ?>>^</option>
-            <option <?php if($chosenSymbol == "&") echo "selected"; ?>>&amp;</option>
-            <option>*</option>
+          <select class="form-control" name="ddlSymbols" id="ddlSymbols" {{ $includeSymbol ? "" : "disabled" }}>
+            <option {{ $chosenSymbol == "!" ? "selected" : "" }}>!</option>
+            <option {{ $chosenSymbol == "@" ? "selected" : "" }}>@</option>
+            <option {{ $chosenSymbol == "#" ? "selected" : "" }}>#</option>
+            <option {{ $chosenSymbol == "$" ? "selected" : "" }}>$</option>
+            <option {{ $chosenSymbol == "%" ? "selected" : "" }}>%</option>
+            <option {{ $chosenSymbol == "^" ? "selected" : "" }}>^</option>
+            <option {{ $chosenSymbol == "&" ? "selected" : "" }}>&amp;</option>
+            <option {{ $chosenSymbol == "*" ? "selected" : "" }}>*</option>
           </select>
         </div>
         <div class="col-md-12 spacer"></div>
